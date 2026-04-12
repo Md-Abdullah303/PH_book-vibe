@@ -19,7 +19,7 @@ yearOfPublishing:1937
 const HomePageBookCard = ({ book }) => {
     console.log(book);
     return (
-        <Link to={'/booksDetails'}>
+        <Link to={`/booksDetails/${book.bookId}`}>
             <div className="card bg-base-100 p-4 shadow-sm">
                 <figure className='bg-base-300 rounded-xl py-4'>
                     <img

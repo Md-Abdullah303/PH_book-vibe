@@ -7,7 +7,7 @@ const Books = ({fetchBooks}) => {
     return (
         <div className='w-9/12 mx-auto'>
             <h1 className='text-3xl text-center font-bold py-5'>Book</h1>
-            <div className="grid  grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {
                     booksData.map((book)=> <HomePageBookCard key={book.bookId} book={book}></HomePageBookCard>)
                 }
