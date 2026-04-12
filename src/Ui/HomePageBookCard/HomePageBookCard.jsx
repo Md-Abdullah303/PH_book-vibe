@@ -1,5 +1,6 @@
 import React from 'react';
 import { CiStar } from 'react-icons/ci';
+import { Link } from 'react-router';
 
 /***
  * author:"J.R.R. Tolkien"
@@ -18,7 +19,7 @@ yearOfPublishing:1937
 const HomePageBookCard = ({ book }) => {
     console.log(book);
     return (
-        <div>
+        <Link to={'/booksDetails'}>
             <div className="card bg-base-100 p-4 shadow-sm">
                 <figure className='bg-base-300 rounded-xl py-4'>
                     <img
@@ -42,7 +43,7 @@ const HomePageBookCard = ({ book }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
