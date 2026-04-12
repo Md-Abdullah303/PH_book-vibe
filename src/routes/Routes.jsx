@@ -3,6 +3,7 @@ import Layout from "../layout/Layout";
 import HomePage from "../Components/Pages/HomePage/HomePage";
 import BooksPage from "../Components/Pages/BooksPage/BooksPage";
 import PagesToRead from "../Components/Pages/PagesToRead/PagesToRead";
+import BooksDetails from "../Ui/BooksDetails/BooksDetails";
 
 export const router = createBrowserRouter([
     {
@@ -15,7 +16,7 @@ export const router = createBrowserRouter([
             { path: '/pagesToRead', Component: PagesToRead },
             {
                 path: '/booksDetails',
-                element: 'booksDetails'
+                Component: BooksDetails,
             }
         ]
     },
