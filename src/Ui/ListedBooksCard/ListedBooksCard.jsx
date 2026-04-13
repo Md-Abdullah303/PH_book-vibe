@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FiMapPin } from 'react-icons/fi';
 import { GoPeople } from 'react-icons/go';
 import { MdOutlineContactPage } from 'react-icons/md';
 import { NavLink } from 'react-router';
+import { BookContext } from '../../context/BookContext';
 
 const ListedBooksCard = ({ book }) => {
+    const {readlist, setReadlist} = useContext(BookContext);
     const {
         author,
         bookId,
@@ -17,6 +19,12 @@ const ListedBooksCard = ({ book }) => {
         image,
         category
     } = book;
+
+    const handleDlt = (deleteBook)=>{
+        console.log("deleted");
+        const updatedList = readlist.filter(book=> book.bookId !== deleteBook.bookId);
+        setReadlist(updatedList);
+    }
 
     return (
         <div className='border border-gray-400 flex  items-center gap-5 p-4 rounded-xl '>
@@ -53,6 +61,7 @@ const ListedBooksCard = ({ book }) => {
                     <div className="badge badge-soft badge-info">Category : {category}</div>
                     <div className="badge badge-soft badge-accent">Rating : {rating}</div>
                     <NavLink to={`/booksDetails/${bookId}`} className='btn bg-green-500 rounded-full text-white border-none'>View Details</NavLink>
+                    <button onClick={()=> handleDlt(book)} className='btn btn-error text-white border-none rounded-full'>Deleted</button>
                 </div>
             </div>
         </div>

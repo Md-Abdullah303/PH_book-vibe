@@ -26,8 +26,10 @@ const BooksDetails = () => {
         yearOfPublishing 
     } = expectedBook;
 
-    const {handleAddToRead, handleAddToWishlist} = useContext(BookContext);
+    const {handleAddToRead, handleAddToWishlist, currentTab, setCurrentTab} = useContext(BookContext);
     // console.log(bookContext);
+
+
 
     
 

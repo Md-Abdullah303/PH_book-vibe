@@ -6,46 +6,74 @@ import ListedBooksCard from '../../../Ui/ListedBooksCard/ListedBooksCard';
 import EmptyMsgForListedBooks from '../sheyarUI/EmptyMsgForListedBooks/EmptyMsgForListedBooks';
 
 const BooksPage = () => {
-    const [sortType, setSortType] = useState('');
-    const { wishlist, readlist } = useContext(BookContext);
+    // const [sortType, setSortType] = useState('');
+    const {sortType, setSortType, wishlist, readlist , currentTab, setCurrentTab} = useContext(BookContext);
+
     const [filterdReadlist, setFilterdReadlist] = useState(readlist);
     const [filterdWishlist, setFilterdWishlist] = useState(wishlist);
     const isLengthZeroOfReadlist = readlist.length === 0;
     const isLengthZeroOfWishlist = wishlist.length === 0;
 
-    useEffect(() => {
-        if (sortType) {
-            if (sortType == "rating") {
-                const ratingReadList = [...readlist].sort((a, b) => {
-                    return a.rating - b.rating
-                });
-                setFilterdReadlist(ratingReadList);
-                console.log(filterdReadlist);
-            } else if (sortType == 'pages') {
-                const pagesReadList = [...readlist].sort((a, b) => {
-                    return a.totalPages - b.totalPages
-                });
-                setFilterdReadlist(pagesReadList);
-            }
-        }
-    }, [sortType, readlist]);
+    
 
-    useEffect(() => {
-        if (sortType) {
-            if (sortType == "rating") {
-                const ratingWishList = [...wishlist].sort((a, b) => {
-                    return a.rating - b.rating
-                });
-                setFilterdWishlist(ratingWishList);
-                
-            } else if (sortType == 'pages') {
-                const pagesWishList = [...wishlist].sort((a, b) => {
-                    return a.totalPages - b.totalPages
-                });
-                setFilterdWishlist(pagesWishList);
+    useEffect(()=>{
+            if(sortType == 'rating'){
+                const sortedRatingRead = [...readlist].sort((a, b)=> a.rating - b.rating);
+                const sortedRaingWishlist = [...wishlist].sort((a, b)=> a.rating - b.rating);
+                setFilterdReadlist(sortedRatingRead);
+                setFilterdWishlist(sortedRaingWishlist);
+                // console.log(sortedRatingRead);
+            }else if(sortType == 'pages'){
+                const sortedPagesRead = [...readlist].sort((a, b)=> a.totalPages - b.totalPages);
+                const sortedPagesWishlist = [...wishlist].sort((a, b)=> a.totalPages - b.totalPages);
+                console.log(sortedPagesWishlist);
+                setFilterdWishlist(sortedPagesWishlist);
+                setFilterdReadlist(sortedPagesRead);
+            }else{
+                setFilterdReadlist(readlist);
+                setFilterdWishlist(wishlist);
             }
-        }
-    }, [sortType, wishlist])
+    }, [sortType, readlist])
+
+    // useEffect(() => {
+    //     if (sortType) {
+    //         if (sortType == "rating") {
+    //             const ratingReadList = [...readlist].sort((a, b) => {
+    //                 return a.rating - b.rating
+    //             });
+    //             setFilterdReadlist(ratingReadList);
+    //             console.log(filterdReadlist);
+    //         } else if (sortType == 'pages') {
+    //             const pagesReadList = [...readlist].sort((a, b) => {
+    //                 return a.totalPages - b.totalPages
+    //             });
+    //             setFilterdReadlist(pagesReadList);
+    //         }
+    //     }
+    // }, [sortType, readlist]);
+
+    // useEffect(() => {
+    //     if (sortType) {
+    //         if (sortType == "rating") {
+    //             const ratingWishList = [...wishlist].sort((a, b) => {
+    //                 return a.rating - b.rating;
+    //             });
+    //             setFilterdWishlist(ratingWishList);
+
+    //         } else if (sortType == 'pages') {
+    //             const pagesWishList = [...wishlist].sort((a, b) => {
+    //                 return a.totalPages - b.totalPages
+    //             });
+    //             setFilterdWishlist(pagesWishList);
+    //         }
+    //     }
+    // }, [sortType, wishlist])
+
+    const handleToggle = (tab)=>{
+        console.log(tab);
+        setCurrentTab(tab);
+        // console.log(currentTab);
+    }
 
     return (
         <div className='w-11/12 mx-auto py-15'>
@@ -63,8 +91,8 @@ const BooksPage = () => {
 
             <Tabs className=''>
                 <TabList >
-                    <Tab>Read Books</Tab>
-                    <Tab>Wishlist Books</Tab>
+                    <Tab onClick={()=> handleToggle('readlist')}>Read Books</Tab>
+                    <Tab onClick={()=> handleToggle("wishlist")}>Wishlist Books</Tab>
                 </TabList>
 
                 <TabPanel>
