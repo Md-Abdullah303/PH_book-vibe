@@ -1,13 +1,17 @@
 import React from 'react';
 import { CiStar } from 'react-icons/ci';
 import { Link } from 'react-router';
+import { toast } from 'react-toastify';
 
 
 
 const HomePageBookCard = ({ book }) => {
-    console.log(book);
+    const handleEnterBook = () => {
+        toast.success(`You are in: ${book.bookName}`)
+    }
+    // console.log(book);
     return (
-        <Link to={`/booksDetails/${book.bookId}`}>
+        <Link to={`/booksDetails/${book.bookId}`} onClick={() => handleEnterBook()}>
             <div className="card bg-base-100 p-4 shadow-sm">
                 <figure className='bg-base-300 rounded-xl py-4'>
                     <img
@@ -18,7 +22,7 @@ const HomePageBookCard = ({ book }) => {
                 <div className="card-body">
                     <div className=" space-x-3">
                         {
-                            book.tags.map(tag=> <div className="badge badge-soft badge-success">{tag}</div>)
+                            book.tags.map((tag, ind) => <div key={ind} className="badge badge-soft badge-success">{tag}</div>)
                         }
                     </div>
                     <h2 className="card-title text-2xl">

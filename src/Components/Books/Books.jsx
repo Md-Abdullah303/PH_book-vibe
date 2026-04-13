@@ -5,7 +5,7 @@ const Books = ({fetchBooks}) => {
     const booksData = use(fetchBooks);
     // console.log(booksData)
     return (
-        <div className='w-9/12 mx-auto'>
+        <div className='w-[90%] sm:w-9/12 mx-auto'>
             <h1 className='text-3xl text-center font-bold py-5'>Book</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {
