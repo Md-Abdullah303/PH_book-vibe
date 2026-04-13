@@ -2,15 +2,16 @@ import React from 'react';
 import { FiMapPin } from 'react-icons/fi';
 import { GoPeople } from 'react-icons/go';
 import { MdOutlineContactPage } from 'react-icons/md';
+import { NavLink } from 'react-router';
 
 const ListedBooksCard = ({ book }) => {
     const {
         author,
+        bookId,
         bookName,
         yearOfPublishing,
         totalPages,
         tags,
-        review,
         rating,
         publisher,
         image,
@@ -51,7 +52,7 @@ const ListedBooksCard = ({ book }) => {
                 <div className="border-t border-gray-400 py-5 space-x-3">
                     <div className="badge badge-soft badge-info">Category : {category}</div>
                     <div className="badge badge-soft badge-accent">Rating : {rating}</div>
-                    <button className='btn bg-green-500 rounded-full text-white border-none'>View Details</button>
+                    <NavLink to={`/booksDetails/${bookId}`} className='btn bg-green-500 rounded-full text-white border-none'>View Details</NavLink>
                 </div>
             </div>
         </div>
